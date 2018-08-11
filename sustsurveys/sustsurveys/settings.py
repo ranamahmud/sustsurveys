@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     # 'allauth.socialaccount',
+     'pulpo_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,6 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'pulpo_forms.middlets.ValidationErrorToHttpErrorMiddleware',
 )
 
 ROOT_URLCONF = 'sustsurveys.urls'
@@ -122,4 +124,20 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = 'home'
+
+
+FIELD_FILES = (
+    'pulpo_forms.fieldtypes.TextField',
+    'pulpo_forms.fieldtypes.TextAreaField',
+    'pulpo_forms.fieldtypes.EmailField',
+    'pulpo_forms.fieldtypes.CheckboxField',
+    'pulpo_forms.fieldtypes.SelectField',
+    'pulpo_forms.fieldtypes.GeoField',
+    'pulpo_forms.fieldtypes.NumberField',
+    'pulpo_forms.fieldtypes.CIField',
+    'pulpo_forms.fieldtypes.FileField',
+    # 'other_app.fields',
+)
+
+FORMS_BASE_URL = '/pulpo/'
