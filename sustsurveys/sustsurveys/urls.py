@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
+from .views import visitors, teachers, students
 from django.views.generic import TemplateView
 urlpatterns = [
     # Examples:
@@ -15,6 +16,13 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
+#Sign up
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/signup/', visitors.SignUpView.as_view(), name='signup'),
+    url(r'^accounts/signup/student/', students.StudentSignUpView.as_view(), name='student_signup'),
+    url(r'^accounts/signup/teacher/', teachers.TeacherSignUpView.as_view(), name='teacher_signup'),
+
+
     url(r'^pulpo/', include('pulpo_forms.urls'), name='base'),
 
 ]
